@@ -1,19 +1,18 @@
-class Book
-  include Mongoid::Document
-  field       :title
-  field       :condition       
-  field       :isbn
-  field       :edition,  :type => Integer
-  field       :rating,   :type => Float  
-  embeds_one  :user
+class Book < ActiveRecord::Base
 
-  validates_presence_of     :title, :isbn
-  validates_numericality_of :edition,
-                              :allow_nil => true
-  validates_numericality_of :rating, :only_integer => false, 
-                              :allow_nil => true
-  validates_inclusion_of    :condition, :in => ["awesome", "meh", "shitty"],
-                              :allow_nil => true
-  validates_format_of       :isbn, :with => /^(?:\d[\ |-]?){9}[\d|X]$/
-  
+  ISBN10_REGEX = /^(?:\d[\ |-]?){9}[\d|X]$/
+  ISBN13_REGEX = /^(?:\d[\ |-]?){13}$/
+
+  validates_presence_of :title, :isbn
+
+  belongs_to :user
+
+  attr_accessor :title, :isbn, :condition, :available, :need
+
+  scope :needed_and_available, lambda { |book| where(book.need? && book.available?) }
+
+  def have?
+    !need?
+  end
+
 end

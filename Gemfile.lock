@@ -31,8 +31,6 @@ GEM
     arel (0.4.0)
       activesupport (>= 3.0.0.beta)
     bcrypt-ruby (2.1.2)
-    bson (1.0.4)
-    bson_ext (1.0.4)
     builder (2.1.2)
     columnize (0.3.1)
     devise (1.1.1)
@@ -53,14 +51,7 @@ GEM
       mime-types
       treetop (>= 1.4.5)
     mime-types (1.16)
-    mongo (1.0.6)
-      bson (>= 1.0.4)
-    mongoid (2.0.0.beta.15)
-      activemodel (= 3.0.0.rc)
-      bson (= 1.0.4)
-      mongo (= 1.0.6)
-      tzinfo (= 0.3.22)
-      will_paginate (~> 3.0.pre)
+    mysql (2.8.1)
     nokogiri (1.4.3.1)
     polyglot (0.3.1)
     rack (1.2.1)
@@ -82,13 +73,6 @@ GEM
       rake (>= 0.8.3)
       thor (~> 0.14.0)
     rake (0.8.7)
-    remarkable (4.0.0.alpha4)
-      rspec (>= 2.0.0.alpha11)
-    remarkable_activemodel (4.0.0.alpha4)
-      remarkable (~> 4.0.0.alpha4)
-      rspec (>= 2.0.0.alpha11)
-    remarkable_mongoid (0.4.0)
-      remarkable_activemodel (>= 4.0.0.alpha2)
     rspec (2.0.0.beta.19)
       rspec-core (= 2.0.0.beta.19)
       rspec-expectations (= 2.0.0.beta.19)
@@ -115,18 +99,15 @@ GEM
       nokogiri (>= 1.2.0)
       rack (>= 1.0)
       rack-test (>= 0.5.3)
-    will_paginate (3.0.pre2)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  bson_ext (= 1.0.4)
   devise (>= 1.1)
   factory_girl_rails
   haml
-  mongoid (>= 2.0.0.beta.15)
+  mysql (= 2.8.1)
   rails (= 3.0.0.rc)
-  remarkable_mongoid
   rspec-rails (>= 2.0.0.beta.17)
   ruby-debug

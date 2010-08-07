@@ -1,0 +1,28 @@
+ production: 
+   adapter: mysql 
+   encoding: utf8 
+   socket:  
+   username: root 
+   password:  
+   database: underground_books_prod 
+    
+ development: 
+   adapter: mysql 
+   encoding: utf8 
+   reconnect: false 
+   database: underground_books_dev 
+   pool: 5 
+   username: root 
+   password: 
+   host: localhost 
+  
+ test: 
+   adapter: mysql 
+   encoding: utf8 
+   reconnect: false 
+   database: underground_books_test 
+   pool: 5 
+   username: root 
+   password: 
+   host: localhost
+
