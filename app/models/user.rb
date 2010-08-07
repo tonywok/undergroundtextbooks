@@ -4,19 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :books
+  has_many :copies
+  has_many :books, :through => :copies
 
-  def library
-    books.collect {|book| book.have? }
-  end
-
-  def wish_list
-    books.collect {|book| book.need? }
-  end
-
-  def find_accomplices
-    Book.needed_and_available
-  end
 
 end
 

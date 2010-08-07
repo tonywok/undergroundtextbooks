@@ -1,36 +1,32 @@
 require 'spec_helper'
 
 describe User do
-  describe "I have a book" do
-
-    it "should add it to my library" do 
-      user = Factory.build(:user)
-      user.books << Factory.create(:book_i_have)
-      user.library.size.should == 1
+  describe "I have a book." do
+    before :each do
+      User.delete_all
     end
 
-  end
-
-  describe "I want a book" do
-    
-    it "should be added to my wish list" do
-      user = Factory.build(:user)
-      user.books << Factory.create(:book_i_need)
-      user.wish_list.size.should == 1
+    it "should create a personal copy of my book." do
+      user = Factory.create(:user)
+      book = Factory.create(:book)
+      book.copies.create(:user => user)
+      user.books.include?(book).should be_true
     end
 
-  end
+    it "should allow me to set my copy as unavailable." do
+      user = Factory.create(:user)
+      book = Factory.create(:book)
+      copy = book.copies.create(:user => user)
+      book.reload
+      book.unavailable_copies.include?(copy).should be_true
+    end
 
-  describe "when I search for a book I need" do 
-    describe "if I have a book someone else needs" do
-
-      it "should pair us up" do
-        luke = Factory.build(:luke)
-        leia = Factory.build(:leia)
-        luke.find_accomplices.include?(leia).should be_true
-        leia.find_accomplices.include?(luke).should be_true
-      end
-
+    it "should be set to available automatically." do
+      user = Factory.create(:user)
+      book = Factory.create(:book)
+      copy = book.copies.create(:user => user)
+      copy.update_attributes(:available => true)
+      book.available_copies.include?(copy).should be_true
     end
   end
 end

@@ -5,14 +5,17 @@ class Book < ActiveRecord::Base
 
   validates_presence_of :title, :isbn
 
-  belongs_to :user
+  has_many :copies
+  has_many :users, :through => :copies
 
-  attr_accessor :title, :isbn, :condition, :available, :need
+  attr_accessor :title, :isbn
 
-  scope :needed_and_available, lambda { |book| where(book.need? && book.available?) }
+  def unavailable_copies
+    copies.reject { |copy| copy.available? }
+  end
 
-  def have?
-    !need?
+  def available_copies
+    copies.collect { |copy| copy.available? }
   end
 
 end
