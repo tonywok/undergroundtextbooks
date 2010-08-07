@@ -8,14 +8,12 @@ class Book < ActiveRecord::Base
   has_many :copies
   has_many :users, :through => :copies
 
-  attr_accessor :title, :isbn
-
   def unavailable_copies
     copies.reject { |copy| copy.available? }
   end
 
   def available_copies
-    copies.collect { |copy| copy.available? }
+    copies.reject { |copy| !copy.available? }
   end
 
 end

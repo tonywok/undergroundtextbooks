@@ -17,7 +17,7 @@ describe User do
       user = Factory.create(:user)
       book = Factory.create(:book)
       copy = book.copies.create(:user => user)
-      book.reload
+      copy.update_attributes(:available => false)
       book.unavailable_copies.include?(copy).should be_true
     end
 
@@ -25,7 +25,6 @@ describe User do
       user = Factory.create(:user)
       book = Factory.create(:book)
       copy = book.copies.create(:user => user)
-      copy.update_attributes(:available => true)
       book.available_copies.include?(copy).should be_true
     end
   end

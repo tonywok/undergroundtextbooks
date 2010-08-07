@@ -3,8 +3,8 @@ class CreateCopies < ActiveRecord::Migration
     create_table :copies do |t|
       t.integer :user_id
       t.integer :book_id
-      t.boolean :need
-      t.boolean :available
+      t.boolean :need, :default => false
+      t.boolean :available, :default => true
 
       t.timestamps
     end
