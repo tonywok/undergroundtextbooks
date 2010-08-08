@@ -16,4 +16,11 @@ class Book < ActiveRecord::Base
     copies.reject { |copy| !copy.available? }
   end
 
+  def copies_needed
+    copies.reject { |copy| !copy.need? }
+  end
+
+  def copies_had
+    copies.reject { |copy| copy.need? }
+  end
 end

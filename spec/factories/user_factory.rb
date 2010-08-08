@@ -9,7 +9,6 @@ Factory.define :user do |u|
   u.password_confirmation     "password"
 end
 
-
 Factory.define :luke, :class => :user do |u|
   u.name                      "Luke Skywalker"
   u.email                     Factory.next(:email)
@@ -22,7 +21,7 @@ Factory.define :book_luke_needs, :class => :book do |b|
   b.isbn        "1934356549"
 end
 
-Factory.define :book_luke_has, :class => :book do |b|
+Factory.define :book do |b|
   b.title       "Programming Ruby 1.9"
   b.isbn        "1934356085"
 end
