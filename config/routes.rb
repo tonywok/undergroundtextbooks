@@ -2,6 +2,10 @@ Undergroundtextbooks::Application.routes.draw do
 
   devise_for :users
 
+  resource :book do
+    resources :copies, :except => [:new]
+  end
+
   root :to => "home#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -34,7 +38,6 @@ Undergroundtextbooks::Application.routes.draw do
   #     resources :comments, :sales
   #     resource :seller
   #   end
-
   # Sample resource route with more complex sub-resources
   #   resources :products do
   #     resources :comments

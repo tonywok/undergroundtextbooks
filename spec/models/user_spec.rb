@@ -60,7 +60,7 @@ describe User do
       rails_book.copies.create(:user => leia, :need => false)
     end
 
-    it "should find potential trades between you and another user." do
+    it "should find potential trades between me and another user." do
       i_have, they_have = luke.list_potential_trades(leia)
       i_have.include?(ruby_book).should be_true
       they_have.include?(rails_book).should be_true
