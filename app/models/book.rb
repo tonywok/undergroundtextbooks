@@ -13,11 +13,11 @@ class Book < ActiveRecord::Base
   end
 
   def available_copies
-    copies.reject { |copy| !copy.available? }
+    copies.select { |copy| copy.available? }
   end
 
   def copies_needed
-    copies.reject { |copy| !copy.need? }
+    copies.select { |copy| copy.need? }
   end
 
   def copies_had
