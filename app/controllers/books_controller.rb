@@ -33,10 +33,12 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.new(params[:book])
+    @book = Book.find_or_create_by_isbn(params[:book][:isbn])
+    @copy = @book.copies.create(params[:book][:copies_attributes]["0"].
+                                merge(:user_id => current_user.id))
 
     respond_to do |format|
-      if @book.save
+      if @book.save 
         format.html { redirect_to(@book, :notice => 'Book was successfully created.') }
         format.xml  { render :xml => @book, :status => :created, :location => @book }
       else

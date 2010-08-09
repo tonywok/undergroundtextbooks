@@ -8,6 +8,8 @@ class Book < ActiveRecord::Base
   has_many :copies
   has_many :users, :through => :copies
 
+  accepts_nested_attributes_for :copies
+
   def unavailable_copies
     copies.reject { |copy| copy.available? }
   end

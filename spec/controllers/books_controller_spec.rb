@@ -14,21 +14,22 @@ describe BooksController do
       get(:new)
       response.should be_success
       create_book
-      user.has_these_books.include?(Book.find_by_isbn("1934356549")).should be_true
+      user.has_these_books.include?(Book.find_by_isbn("1934356085")).should be_true
+      # response.should render_template('decide_where_it_should_go')
     end
   end
 
   def create_book(options = default_book_copy)
-    post(:create, { :book => { :title => "#{options[:title]}", 
-                               :isbn  => "#{options[:isbn]}",
-                               :copy_attributes => { :need      => "#{options[:need]}",
-                                                     :available => "#{options[:available]}" }}})
+    post(:create, :book => 
+                  { :id    => "#{options['id']}",
+                    :title => "#{options['title']}", 
+                    :isbn  => "#{options['isbn']}",
+                    :copies_attributes => 
+                    { "0" => { :need      => "#{options['need']}",
+                               :available => "#{options['available']}" }}})
   end
 
   def default_book_copy
-    { :title     => "Agile Web Development with Rails",
-      :isbn      => "1934356549", 
-      :need      => false, 
-      :available => true }
+    Factory.create(:book).attributes.update({'need' => 'false', 'available' => 'true' })
   end
 end
