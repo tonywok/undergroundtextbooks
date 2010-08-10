@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe BooksController do
-  describe "when I want to add a book I have," do
+  describe "when I want to add a book that I have," do
 
     let(:user) { Factory.create(:user) }
     
@@ -14,8 +14,28 @@ describe BooksController do
       get(:new)
       response.should be_success
       create_book
+      # Checks if book is in system and if user has a copy
       user.has_these_books.include?(Book.find_by_isbn("1934356085")).should be_true
-      # response.should render_template('decide_where_it_should_go')
+      response.should render_template(user_copies(user))
+    end
+  end
+
+  describe "when casually looking through books," do
+    it "should search based on isbn." do
+      pending
+    end
+
+    it "should search based on title." do
+      pending
+    end
+
+    it "should search based on author(s) name." do
+      pending
+    end
+
+    it "should allow me to flag a book for incorrect info." do
+      pending
+      # could arguably go in users controller.
     end
   end
 

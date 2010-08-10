@@ -2,9 +2,11 @@ Undergroundtextbooks::Application.routes.draw do
 
   devise_for :users
 
-  resources :books do
-    resources :copies, :except => [:new]
+  resources :users do
+    resources :copies, :except => [:new, :create]
   end
+
+  resources :books
 
   root :to => "books#index"
   # The priority is based upon order of creation:

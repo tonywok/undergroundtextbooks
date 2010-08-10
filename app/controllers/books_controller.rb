@@ -21,6 +21,7 @@ class BooksController < ApplicationController
 
   def new
     @book = Book.new
+    @copy = @book.copies.new(:user => current_user)
 
     respond_to do |format|
       format.html # new.html.erb
