@@ -26,3 +26,12 @@
    password: 
    host: localhost
 
+ cucumber: 
+   adapter: mysql 
+   encoding: utf8 
+   reconnect: false 
+   database: underground_books_test 
+   pool: 5 
+   username: root 
+   password: 
+   host: localhost
