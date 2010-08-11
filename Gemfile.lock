@@ -112,6 +112,7 @@ DEPENDENCIES
   haml
   mysql (= 2.8.1)
   nifty-generators
+  nokogiri
   rails (>= 3.0.0.rc)
   rspec-rails (>= 2.0.0.beta.17)
   ruby-debug

@@ -23,22 +23,22 @@ class User < ActiveRecord::Base
 
   def find_accomplices
     accomplices = User.all_except(self).inject([]) do |bros, dude|
-      offered_books = dude.needs_these_books & self.has_these_books
-      needed_books  = self.needs_these_books & dude.has_these_books
+      offered_books = dude.needs_these_books & has_these_books
+      needed_books  = needs_these_books & dude.has_these_books
       bros << dude unless offered_books.empty? or needed_books.empty?
     end  
   end
 
-  def list_potential_trades accomplice
-    return i_have(accomplice), they_have(accomplice)
+  def list_potential_trades(accomplice)
+    [i_have(accomplice), they_have(accomplice)]
   end
 
-  def i_have accomplice
-    accomplice.needs_these_books & self.has_these_books
+  def i_have(accomplice)
+    accomplice.needs_these_books & has_these_books
   end
 
-  def they_have accomplice
-    self.needs_these_books & accomplice.has_these_books
+  def they_have(accomplice)
+    needs_these_books & accomplice.has_these_books
   end
 
   def sort_accomplices_by(accomplices, decision = "i_have")

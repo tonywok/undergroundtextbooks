@@ -21,11 +21,6 @@ Factory.define :book_luke_needs, :class => :book do |b|
   b.isbn        "1934356549"
 end
 
-Factory.define :book do |b|
-  b.title       "Programming Ruby 1.9"
-  b.isbn        "1934356085"
-end
-
 Factory.define :leia, :class => :user do |u|
   u.name                      "Leia Organa"
   u.email                     Factory.next(:email)

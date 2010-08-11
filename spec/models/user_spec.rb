@@ -7,31 +7,29 @@ describe User do
     let(:book) { Factory.create(:book) }
     let(:ruby_book) { Factory.create(:ruby_book) }
     let(:rails_book) { Factory.create(:rails_book) }
-
-    before :each do
-      @copy = book.copies.create(:user => user)
-    end
+    let(:copy) { book.copies.create(:user => user) }
+    before { copy }
 
     it "should create a personal copy of my book." do
       user.books.include?(book).should be_true
     end
 
     it "should allow me to set my copy as unavailable." do
-      @copy.update_attributes(:available => false)
-      book.unavailable_copies.include?(@copy).should be_true
+      copy.update_attributes(:available => false)
+      book.unavailable_copies.include?(copy).should be_true
     end
 
     it "should be set to available automatically." do
-      book.available_copies.include?(@copy).should be_true
+      book.available_copies.include?(copy).should be_true
     end
 
     it "should know that I have a copy of the book." do
-      book.copies_had.include?(@copy).should be_true
+      book.copies_had.include?(copy).should be_true
     end
 
     it "should allow me to specify that I need a copy." do
-      @copy.update_attributes(:need => true)
-      book.copies_needed.include?(@copy).should be_true
+      copy.update_attributes(:need => true)
+      book.copies_needed.include?(copy).should be_true
     end
 
     it "should be able to find all the books I have." do 
@@ -45,7 +43,7 @@ describe User do
     end
   end
 
-  describe "I have a book someone else needs and they have a book I need." do
+  context "I have a book someone else needs and they have a book I need." do
     
     let(:user) { Factory.create(:user) }
     let(:luke) { Factory.create(:luke) }

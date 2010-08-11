@@ -5,6 +5,7 @@ gem "devise",   ">= 1.1"
 gem "haml"
 gem "mysql",    "2.8.1"
 gem "ruby-debug"
+gem "nokogiri"
 gem "basic_assumption"
 gem "nifty-generators"
 
