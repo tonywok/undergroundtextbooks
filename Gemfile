@@ -8,6 +8,7 @@ gem "ruby-debug"
 gem "nokogiri"
 gem "basic_assumption"
 gem "nifty-generators"
+gem "httparty"
 
 group :test do
   gem "rspec-rails", ">= 2.0.0.beta.17"
