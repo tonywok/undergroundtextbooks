@@ -9,6 +9,7 @@ gem "nokogiri"
 gem "basic_assumption"
 gem "nifty-generators"
 gem "httparty"
+gem "haml-rails"
 
 group :test do
   gem "rspec-rails", ">= 2.0.0.beta.17"
